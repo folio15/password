@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Validator</title>
+</head>
+<body>
+    <h2>Password Validator</h2>
+
+    <label for="password">Enter your password:</label>
+    <input type="password" id="password" />
+    <button onclick="validatePassword()">Submit</button>
+
+    <p id="message"></p>
+
+    <script>
+        function validatePassword() {
+            const password = document.getElementById("password").value;
+            let message = "";
+            let isValid = true;
+
+            // Check if the password is at least 6 characters long
+            if (password.length < 6) {
+                message += "Password must be at least 6 characters long.<br>";
+                isValid = false;
+            }
+
+            // Check if the password contains both letters and numbers
+            const hasNumber = /\d/.test(password);
+            const hasLetter = /[a-zA-Z]/.test(password);
+
+            if (!hasNumber) {
+                message += "Password must contain at least one number.<br>";
+                isValid = false;
+            }
+
+            if (!hasLetter) {
+                message += "Password must contain at least one letter.<br>";
+                isValid = false;
+            }
+
+            // Display the appropriate message
+            if (isValid) {
+                message = "Password is valid.";
+            }
+
+            document.getElementById("message").innerHTML = message;
+        }
+    </script>
+</body>
+</html>
